@@ -1,0 +1,17 @@
+
+# Visual studio 
+/Bingo/.vs
+/.vs
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+[Gg]enerated Files/
+x64/
+x86/
+build/
+bld/
+[Bb]in/
+[Oo]bj/
