@@ -7,14 +7,14 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="16dcf6cb-fd23-47a1-96d7-36128d612775"
+    Name="8c580ab0-5fce-48d7-b80c-34c173fa91da"
     Publisher="CN=pepij"
     Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="16dcf6cb-fd23-47a1-96d7-36128d612775" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="8c580ab0-5fce-48d7-b80c-34c173fa91da" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>Bingo</DisplayName>
+    <DisplayName>UWPBingo</DisplayName>
     <PublisherDisplayName>pepij</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
@@ -30,12 +30,12 @@
   <Applications>
     <Application Id="App"
       Executable="$targetnametoken$.exe"
-      EntryPoint="Bingo.App">
+      EntryPoint="UWPBingo.App">
       <uap:VisualElements
-        DisplayName="Bingo"
+        DisplayName="UWPBingo"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png"
-        Description="Bingo"
+        Description="UWPBingo"
         BackgroundColor="transparent">
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png"/>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
