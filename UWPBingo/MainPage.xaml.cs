@@ -35,7 +35,6 @@ namespace UWPBingo
             = new Dictionary<UIContext, AppWindow>();
 
         DispatcherTimer dispatcherTimer;
-        Ellipse bingoBall;
 
         public MainPage()
         {
@@ -93,6 +92,7 @@ namespace UWPBingo
 
     public static class Globals
     {
-
+        public static int HighestNumber = 90;
     }
 }
+

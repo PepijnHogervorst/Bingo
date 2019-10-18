@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -24,6 +25,9 @@ namespace UWPBingo
     /// </summary>
     public sealed partial class AppWindowPage : Page
     {
+        private Random rng = new Random();
+        private SolidColorBrush CellActiveColor = new SolidColorBrush(Color.FromArgb(255, 255, 0, 221));
+
         public AppWindowPage()
         {
             this.InitializeComponent();
@@ -32,12 +36,17 @@ namespace UWPBingo
 
         private void AppWindowPage_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            DrawGrid();
+            
         }
 
         private void BtnNextNumber_Click(object sender, RoutedEventArgs e)
         {
-            
+            int number = rng.Next(1, Globals.HighestNumber);
+            string name = $"Row{number / 10}Col{number % 10}";
+            TextBlock txt = this.FindName(name) as TextBlock;
+
+            SetColorInCell(number);
+
         }
 
         private void BtnRestart_Click(object sender, RoutedEventArgs e)
@@ -47,48 +56,20 @@ namespace UWPBingo
 
         private void NumberGrid_Loaded(object sender, RoutedEventArgs e)
         {
-            DrawGrid();
+            
         }
 
-        private void DrawGrid()
+        private void SetColorInCell(int Number)
         {
-            DrawHorizontalLine(lineH1, 1);
-            DrawHorizontalLine(lineH2, 2);
-            DrawHorizontalLine(lineH3, 3);
-            DrawHorizontalLine(lineH4, 4);
-            DrawHorizontalLine(lineH5, 5);
-            DrawHorizontalLine(lineH6, 6);
-            DrawHorizontalLine(lineH7, 7);
-            DrawHorizontalLine(lineH8, 8);
-            DrawHorizontalLine(lineH9, 9);
+            switch(Number)
+            {
+                case 1: this.border01.Background = CellActiveColor; break;
+                case 2: this.border02.Background = CellActiveColor; break;
+                case 3: this.border03.Background = CellActiveColor; break;
+                case 4: this.border04.Background = CellActiveColor; break;
 
-            DrawVerticalLine(lineV1, 1);
-            DrawVerticalLine(lineV2, 2);
-            DrawVerticalLine(lineV3, 3);
-            DrawVerticalLine(lineV4, 4);
-            DrawVerticalLine(lineV5, 5);
-            DrawVerticalLine(lineV6, 6);
-            DrawVerticalLine(lineV7, 7);
-            DrawVerticalLine(lineV8, 8);
-            DrawVerticalLine(lineV9, 9);
+                default: break;
+            }
         }
-
-        private void DrawHorizontalLine(Line line, int position)
-        {
-            line.X1 = 0;
-            line.X2 = this.NumberGrid.ActualWidth;
-            line.Y1 = this.NumberGrid.ActualHeight / 10 * position;
-            line.Y2 = line.Y1;
-        }
-
-        private void DrawVerticalLine(Line line, int position)
-        {
-            line.X1 = this.NumberGrid.ActualWidth / 10 * position;
-            line.X2 = line.X1;
-            line.Y1 = 0;
-            line.Y2 = this.NumberGrid.ActualHeight;
-        }
-
-        
     }
 }
