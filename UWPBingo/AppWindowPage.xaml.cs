@@ -45,10 +45,14 @@ namespace UWPBingo
 
         private void BtnNextNumber_Click(object sender, RoutedEventArgs e)
         {
-            int number = rng.Next(1, Globals.HighestNumber);
+            //Get number from list 
+            int index = rng.Next(0, Globals.NumbersRemaining.Count - 1);
+            int number = Globals.NumbersRemaining[index];
+            //int number = rng.Next(1, Globals.HighestNumber);
             string name = $"Row{number / 10}Col{number % 10}";
             TextBlock txt = this.FindName(name) as TextBlock;
 
+            //Set border background to color
             object wantedItem = GridPage.FindName("border" + number.ToString("D4"));
             if (wantedItem is Border)
             {
@@ -56,7 +60,13 @@ namespace UWPBingo
                 border.Background = new SolidColorBrush(Windows.UI.Colors.Green);
             }
 
+            //Update mainpage number
             Globals.BingoNr = number;
+
+            //Remove number from list 
+            Globals.NumbersRemaining.RemoveAt(index);
+
+            //If numbersdone list count bigger than 1 set this to history
         }
 
         private void BtnRestart_Click(object sender, RoutedEventArgs e)
