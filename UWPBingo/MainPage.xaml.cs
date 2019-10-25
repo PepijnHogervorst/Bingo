@@ -93,6 +93,9 @@ namespace UWPBingo
     public static class Globals
     {
         public static int HighestNumber = 90;
+
+        public static int NrOfColumns = 10;
+        public static int NrOfRows = (HighestNumber + NrOfColumns - 1) / NrOfColumns;
     }
 }
 
