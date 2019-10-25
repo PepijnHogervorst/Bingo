@@ -39,6 +39,7 @@ namespace UWPBingo
         public MainPage()
         {
             this.InitializeComponent();
+            Globals.ResetNumbers();
 
             //Init timer to start second screen
             dispatcherTimer = new DispatcherTimer();
@@ -50,6 +51,14 @@ namespace UWPBingo
             var bounds = ApplicationView.GetForCurrentView().VisibleBounds;
             var scaleFactor = DisplayInformation.GetForCurrentView().RawPixelsPerViewPixel;
             var size = new Size(bounds.Width * scaleFactor, bounds.Height * scaleFactor);
+
+            //Events
+            Globals.BingoNrChanged += Globals_BingoNrChanged;
+        }
+
+        private void Globals_BingoNrChanged(object sender, EventArgs e)
+        {
+            this.TxtBingoNr.Text = Globals.BingoNr.ToString();
         }
 
         private void DispatcherTimer_Tick(object sender, object e)
@@ -88,14 +97,6 @@ namespace UWPBingo
             // Show the window.
             await appWindow.TryShowAsync();
         }
-    }
-
-    public static class Globals
-    {
-        public static int HighestNumber = 90;
-
-        public static int NrOfColumns = 10;
-        public static int NrOfRows = (HighestNumber + NrOfColumns - 1) / NrOfColumns;
     }
 }
 

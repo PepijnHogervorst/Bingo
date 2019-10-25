@@ -28,6 +28,8 @@ namespace UWPBingo
         private Random rng = new Random();
         private SolidColorBrush CellActiveColor = new SolidColorBrush(Color.FromArgb(255, 255, 0, 221));
 
+        
+
         public AppWindowPage()
         {
             this.InitializeComponent();
@@ -47,7 +49,6 @@ namespace UWPBingo
             string name = $"Row{number / 10}Col{number % 10}";
             TextBlock txt = this.FindName(name) as TextBlock;
 
-            //SetColorInCell(number);
             object wantedItem = GridPage.FindName("border" + number.ToString("D4"));
             if (wantedItem is Border)
             {
@@ -55,6 +56,7 @@ namespace UWPBingo
                 border.Background = new SolidColorBrush(Windows.UI.Colors.Green);
             }
 
+            Globals.BingoNr = number;
         }
 
         private void BtnRestart_Click(object sender, RoutedEventArgs e)
@@ -62,10 +64,8 @@ namespace UWPBingo
 
         }
 
-        private void NumberGrid_Loaded(object sender, RoutedEventArgs e)
-        {
-            
-        }
+        
+
 
         private void LayoutDesign()
         {

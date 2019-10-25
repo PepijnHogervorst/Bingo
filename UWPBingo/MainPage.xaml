@@ -22,6 +22,12 @@
         <Ellipse Grid.Column="1" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Center" 
                  Fill="Red" Width="400" Height="400"/>
         <TextBlock x:Name="TxtBingoNr" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"
-                   Text="77" FontSize="200"/>
+                   Text="" FontSize="200"/>
+        <TextBlock x:Name="TxtHistory1" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" 
+                   Margin="20" FontSize="100" Text=""/>
+        <TextBlock x:Name="TxtHistory2" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                   Margin="20" FontSize="80" Text=""/>
+        <TextBlock x:Name="TxtHistory3" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" 
+                   Margin="20" FontSize="60" Text=""/>
     </Grid>
 </Page>
