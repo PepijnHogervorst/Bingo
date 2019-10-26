@@ -38,6 +38,14 @@ namespace UWPBingo
         private Size screenSize;
         private const string ellipseName = "ellipseBingoNr";
 
+        private Color[] colors = new Color[]
+        {
+            Color.FromArgb(255, 255, 10, 0),
+            Color.FromArgb(255, 0, 255, 0),
+            Color.FromArgb(255, 100, 255, 155),
+            Color.FromArgb(255, 255, 0, 255),
+        };
+
         public MainPage()
         {
             this.InitializeComponent();
@@ -90,6 +98,16 @@ namespace UWPBingo
                Globals.NumbersDone[2].ToString() : "";
             this.TxtHistory3.Text = (Globals.NumbersDone.Count >= 4) ?
                 Globals.NumbersDone[3].ToString() : "";
+
+            //Update color of ellipse 
+            object wantedItem = GridPage.FindName(ellipseName);
+            if (wantedItem is Ellipse)
+            {
+                Ellipse ellipse = wantedItem as Ellipse;
+                Random random = new Random();
+
+                ellipse.Fill = new SolidColorBrush(colors[random.Next(0, colors.Length)]);
+            }
         }
 
         private void DispatcherTimer_Tick(object sender, object e)
