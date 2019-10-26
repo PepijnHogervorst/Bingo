@@ -34,11 +34,14 @@ namespace UWPBingo
         public static Dictionary<UIContext, AppWindow> AppWindows { get; set; }
             = new Dictionary<UIContext, AppWindow>();
 
-        DispatcherTimer dispatcherTimer;
+        private DispatcherTimer dispatcherTimer;
+        private Size screenSize;
+        private const string ellipseName = "ellipseBingoNr";
 
         public MainPage()
         {
             this.InitializeComponent();
+            this.LayoutDesign();
             Globals.ResetNumbers();
 
             //Init timer to start second screen
@@ -47,18 +50,46 @@ namespace UWPBingo
             dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 500);
             dispatcherTimer.Start();
 
-            //Screen bounds 
-            var bounds = ApplicationView.GetForCurrentView().VisibleBounds;
-            var scaleFactor = DisplayInformation.GetForCurrentView().RawPixelsPerViewPixel;
-            var size = new Size(bounds.Width * scaleFactor, bounds.Height * scaleFactor);
-
             //Events
             Globals.BingoNrChanged += Globals_BingoNrChanged;
+            Window.Current.SizeChanged += Current_SizeChanged;
+        }
+
+        private void Current_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
+        {
+            object wantedItem = GridPage.FindName(ellipseName);
+            if (wantedItem is Ellipse)
+            {
+                Ellipse ellipse = wantedItem as Ellipse;
+                double newHeight = Window.Current.Bounds.Height;
+                if(Window.Current.Bounds.Width < Window.Current.Bounds.Height)
+                {
+                    newHeight = Window.Current.Bounds.Width;
+                }
+                ellipse.Height = (newHeight / 2) - 10;
+                ellipse.Width = ellipse.Height;
+            }
         }
 
         private void Globals_BingoNrChanged(object sender, EventArgs e)
         {
-            this.TxtBingoNr.Text = Globals.BingoNr.ToString();
+            //Update current nr
+            if (Globals.BingoNr == 0)
+            {
+                this.TxtBingoNr.Text = "";
+            }
+            else
+            {
+                this.TxtBingoNr.Text = Globals.BingoNr.ToString();
+            }
+
+            //Update history
+            this.TxtHistory1.Text = (Globals.NumbersDone.Count >= 2) ?
+               Globals.NumbersDone[1].ToString() : "";
+            this.TxtHistory2.Text = (Globals.NumbersDone.Count >= 3) ?
+               Globals.NumbersDone[2].ToString() : "";
+            this.TxtHistory3.Text = (Globals.NumbersDone.Count >= 4) ?
+                Globals.NumbersDone[3].ToString() : "";
         }
 
         private void DispatcherTimer_Tick(object sender, object e)
@@ -96,6 +127,26 @@ namespace UWPBingo
 
             // Show the window.
             await appWindow.TryShowAsync();
+        }
+
+        private void LayoutDesign()
+        {
+            //Screen bounds 
+            var bounds = ApplicationView.GetForCurrentView().VisibleBounds;
+            var scaleFactor = DisplayInformation.GetForCurrentView().RawPixelsPerViewPixel;
+            screenSize = new Size(bounds.Width * scaleFactor, bounds.Height * scaleFactor);
+
+            Ellipse ellipse = new Ellipse();
+            ellipse.Fill = new SolidColorBrush(Windows.UI.Colors.Red);
+            ellipse.Name = ellipseName;
+            ellipse.Height = (Window.Current.Bounds.Height / 2) - 10;
+            ellipse.Width = ellipse.Height;
+            ellipse.HorizontalAlignment = HorizontalAlignment.Center;
+            ellipse.VerticalAlignment = VerticalAlignment.Center;
+            GridPage.Children.Add(ellipse);
+            Canvas.SetZIndex(ellipse, 1);
+            Grid.SetColumn(ellipse, 1);
+            Grid.SetRow(ellipse, 1);
         }
     }
 }

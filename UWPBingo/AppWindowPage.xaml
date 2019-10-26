@@ -8,7 +8,7 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid Background="Black" x:Name="GridPage" Margin="0,3,0,-3">
+    <Grid Background="Black" x:Name="GridPage" Margin="0,0,0,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
@@ -37,6 +37,15 @@
         </Grid.ColumnDefinitions>
         <Button x:Name="BtnNextNumber" Grid.Row="0" Grid.Column="0"
                 HorizontalAlignment="Center" VerticalAlignment="Center" Content="Next number" Click="BtnNextNumber_Click"/>
+        <TextBlock x:Name="txtCurrentNr" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"
+                   FontSize="50" Text=""/>
+        <TextBlock x:Name="txtHistory1" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"
+                   FontSize="40"/>
+        <TextBlock x:Name="txtHistory2" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"
+                   FontSize="30"/>
+        <TextBlock x:Name="txtHistory3" Grid.Row="7" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"
+                   FontSize="20"/>
+
         <Button x:Name="BtnRestart" Grid.Row="10" Grid.Column="0"
                 HorizontalAlignment="Center" VerticalAlignment="Center" Content="Restart" Click="BtnRestart_Click"/>
         

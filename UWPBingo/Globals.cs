@@ -48,6 +48,9 @@ namespace UWPBingo
             {
                 NumbersRemaining.Add(i + 1);
             }
+
+            //Clear 
+            BingoNr = 0;
         }
     }
 }
