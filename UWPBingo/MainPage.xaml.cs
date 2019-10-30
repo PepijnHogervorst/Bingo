@@ -38,12 +38,14 @@ namespace UWPBingo
         private Size screenSize;
         private const string ellipseName = "ellipseBingoNr";
 
-        private Color[] colors = new Color[]
+        private Color[] colors;
+        private string[] hexColors = new string[]
         {
-            Color.FromArgb(255, 255, 10, 0),
-            Color.FromArgb(255, 0, 255, 0),
-            Color.FromArgb(255, 100, 255, 155),
-            Color.FromArgb(255, 255, 0, 255),
+            "#ffee4035",
+            "#fff37736",
+            "#ff009688",
+            "#ff7bc043",
+            "#ff0392cf",
         };
 
         public MainPage()
@@ -57,6 +59,13 @@ namespace UWPBingo
             dispatcherTimer.Tick += DispatcherTimer_Tick;
             dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 500);
             dispatcherTimer.Start();
+
+            //Set random colors of Bingo ball 
+            colors = new Color[hexColors.Length];
+            for (int i = 0; i < colors.Length; i++)
+            {
+                colors[i] = GetSolidColorBrush(hexColors[i]).Color;
+            }
 
             //Events
             Globals.BingoNrChanged += Globals_BingoNrChanged;
@@ -165,6 +174,17 @@ namespace UWPBingo
             Canvas.SetZIndex(ellipse, 1);
             Grid.SetColumn(ellipse, 1);
             Grid.SetRow(ellipse, 1);
+        }
+
+        public SolidColorBrush GetSolidColorBrush(string hex)
+        {
+            hex = hex.Replace("#", string.Empty);
+            byte a = (byte)(Convert.ToUInt32(hex.Substring(0, 2), 16));
+            byte r = (byte)(Convert.ToUInt32(hex.Substring(2, 2), 16));
+            byte g = (byte)(Convert.ToUInt32(hex.Substring(4, 2), 16));
+            byte b = (byte)(Convert.ToUInt32(hex.Substring(6, 2), 16));
+            SolidColorBrush myBrush = new SolidColorBrush(Windows.UI.Color.FromArgb(a, r, g, b));
+            return myBrush;
         }
     }
 }

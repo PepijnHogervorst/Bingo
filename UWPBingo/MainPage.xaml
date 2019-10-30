@@ -19,13 +19,22 @@
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
+        <Image HorizontalAlignment="Right" Margin="0,0,0,0" Grid.Row="0" VerticalAlignment="Stretch" Source="/Assets/sint_paard.gif" Stretch="Uniform"
+               Grid.Column="2"/>
+        <Image x:Name="ImgPresents" Source="/Assets/sinterklaas-cadeautjes-png-3.png" HorizontalAlignment="Left" VerticalAlignment="Bottom"
+               Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2" MaxHeight="350"/>
+        <Image x:Name="ImgPepernoten" Source="/Assets/Pepernoten.png" HorizontalAlignment="Right" VerticalAlignment="Bottom"
+               Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2" MaxHeight="350"/>
+        <Rectangle x:Name="RectBgHistoryNrs" Fill="DarkSlateGray" HorizontalAlignment="Stretch" VerticalAlignment="Center"
+                   Grid.Column="1" Grid.Row="2" Height="90" RadiusX="10" RadiusY="10"/>
         <TextBlock x:Name="TxtBingoNr" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"
                    Text="" FontSize="200" Canvas.ZIndex="10" />
         <TextBlock x:Name="TxtHistory1" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" 
-                   Margin="20" FontSize="100" Text=""/>
+                   Margin="10,10,10,20" FontSize="100" Text=""/>
         <TextBlock x:Name="TxtHistory2" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" 
-                   Margin="20" FontSize="80" Text=""/>
+                   Margin="10,10,10,20" FontSize="80" Text=""/>
         <TextBlock x:Name="TxtHistory3" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" 
-                   Margin="20" FontSize="60" Text=""/>
+                   Margin="10,10,10,20" FontSize="60" Text=""/>
+        
     </Grid>
 </Page>

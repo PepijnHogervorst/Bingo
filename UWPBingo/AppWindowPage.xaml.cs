@@ -136,25 +136,25 @@ namespace UWPBingo
         {
             Border border;
             TextBlock textBlock;
-            for (int i = 1; i <= Globals.HighestNumber; i++)
+            for (int i = 0; i < Globals.HighestNumber; i++)
             {
                 border = new Border();
                 border.BorderBrush = new SolidColorBrush(Windows.UI.Colors.Gray);
                 border.BorderThickness = new Thickness(2);
-                border.Name = borderName + i.ToString("D4");
+                border.Name = borderName + (i + 1).ToString("D4");
                 GridPage.Children.Add(border);
-                Grid.SetColumn(border, ((i - 1) % Globals.NrOfColumns) + 1);
+                Grid.SetColumn(border, (i % Globals.NrOfColumns) + 1);
                 Grid.SetRow(border, i / Globals.NrOfColumns);
 
                 textBlock = new TextBlock();
-                textBlock.Name = textNrName + i.ToString("D4");
+                textBlock.Name = textNrName + (i + 1).ToString("D4");
                 textBlock.FontSize = 25;
                 textBlock.Foreground = new SolidColorBrush(Windows.UI.Colors.White);
                 textBlock.HorizontalAlignment = HorizontalAlignment.Center;
                 textBlock.VerticalAlignment = VerticalAlignment.Center;
-                textBlock.Text = i.ToString();
+                textBlock.Text = (i + 1).ToString();
                 GridPage.Children.Add(textBlock);
-                Grid.SetColumn(textBlock, ((i - 1) % Globals.NrOfColumns) + 1);
+                Grid.SetColumn(textBlock, (i % Globals.NrOfColumns) + 1);
                 Grid.SetRow(textBlock, i / Globals.NrOfColumns);
             }
         }
